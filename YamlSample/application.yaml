@@ -1,0 +1,11 @@
+Port: 8080
+DbHost: 127.0.0.1
+DbPort: 3306
+DbName: GinSample
+DbUser: root
+DbPassword: root
+Test: [1,2,3]
+
+Test1:
+  Test2: AAA
+  Test3: 10

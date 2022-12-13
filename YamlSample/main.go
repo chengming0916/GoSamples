@@ -22,6 +22,22 @@ type Conf struct {
 	} `yaml:"Test1"`
 }
 
+type Conf1 struct {
+	Port       int    `yaml:"Port"`
+	DbHost     string `yaml:"DbHost"`
+	DbPort     int    `yaml:"DbPort"`
+	DbName     string `yaml:"DbName"`
+	DbUser     string `yaml:"DbUser"`
+	DbPassword string `yaml:"DbPassword"`
+	Test       []int  `yaml:"Test"`
+	Test1      Test   `yaml:"Test1"`
+}
+
+type Test struct {
+	Test2 string `yaml:"Test2"`
+	Test3 int    `yaml:"Test3"`
+}
+
 func main() {
 
 	yamlFile, err := ioutil.ReadFile("application.yaml")
@@ -37,6 +53,14 @@ func main() {
 	}
 
 	log.Printf("cfg:%#v \n", cfg)
+
+	var cfg1 *Conf1
+	err = yaml.Unmarshal([]byte(yamlFile), &cfg1)
+	if err != nil {
+		log.Fatalf("unmarshal: %v", err)
+	}
+
+	log.Printf("cfg:%#v \n", cfg1)
 	// log.Printf("test2:%s \n", cfg.test2)
 
 	// for index, item := range cfg.test3 {

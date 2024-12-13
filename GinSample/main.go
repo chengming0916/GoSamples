@@ -1,8 +1,8 @@
 package main
 
 import (
+	"GoSamples/GinSample/assets"
 	"GoSamples/GinSample/config"
-	"GoSamples/GinSample/domain"
 	"GoSamples/GinSample/routers"
 	"io/ioutil"
 	"log"
@@ -32,8 +32,11 @@ func main() {
 	routers.InitRouter(r)
 
 	// 初始化数据库
-	domain.InitDb(config)
+	// domain.InitDb(config)
 	// defer db.Close()
+
+	assets.Load("./assets/server/static")
+	r.StaticFS("/static", assets.FileSystem)
 
 	port := ":" + strconv.Itoa(int(config.Port))
 	if err := r.Run(port); err != nil {

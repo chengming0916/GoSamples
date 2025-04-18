@@ -55,13 +55,6 @@ func NewService(cfg *types.ServiceConfig) (*Service, error) {
 		return nil, fmt.Errorf("create listener error, %v", err)
 	}
 
-	// svr.muxer = mux.NewMux(ln)
-	// svr.muxer.SetKeepAlive(time.Duration(cfg.TcpCfg.KeepAlive) * time.Second)
-	// go func() {
-	// 	_ = svr.muxer.Serve()
-	// }()
-
-	// ln = svr.muxer.DefaultListener()
 	svr.listener = ln
 	logrus.Infof("tcp listen on %s", address)
 	return svr, nil

@@ -1,8 +1,7 @@
 package main
 
 import (
-	// _ "GoSamples/ServiceSample/pkg/metrics"
-	_ "GoSamples/ServiceSample/assets"
+	_ "GoSamples/ServiceSample/pkg/log"
 )
 
 func main() {

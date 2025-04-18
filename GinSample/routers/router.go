@@ -8,6 +8,11 @@ import (
 
 func InitRouter(r *gin.Engine) {
 
+	// 静态页面
+	r.StaticFile("/favicon.ico", "./assets/static/favicon.ico")
+	r.Static("/assets", "./assets/static/assets")
+	r.StaticFile("/", "./assets/static/index.html")
+
 	// 用户路由表
 	UserRouter(r)
 }

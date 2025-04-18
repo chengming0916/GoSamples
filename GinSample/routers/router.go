@@ -2,6 +2,7 @@ package routers
 
 import (
 	"GoSamples/GinSample/controllers"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,6 +16,17 @@ func InitRouter(r *gin.Engine) {
 
 	// 用户路由表
 	UserRouter(r)
+
+	// 简单认证
+	authorized := r.Group("/admin", gin.BasicAuth(gin.Accounts{
+		"admin": "admin", // user:password
+	}))
+	authorized.POST("user", func(ctx *gin.Context) {
+		ctx.JSON(http.StatusOK, gin.H{
+			"account":  "admin",
+			"password": "admin",
+		})
+	})
 }
 
 var (
